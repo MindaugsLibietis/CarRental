@@ -12,9 +12,8 @@ public class Main {
 
 
     public static void main(String[] args) {
-
+        Scanner sc = new Scanner(System.in);
         Client lietotajs = new Client();
-
         List<Car> carList = new ArrayList<Car>();
 
         Car a1 = new Car(45.00, 2007, "Volvo", true, "GD 1337", "V70", "5HBDM84627C13444", 5);carList.add(a1);
@@ -25,18 +24,22 @@ public class Main {
         Car b2 = new Car( 75.00, 2013, "BMW", true, "GC 6453", "530d", "7HBDM43577H25444", 5);carList.add(b2);
         Car b3 = new Car( 69.00, 2015, "Volkswagen", true, "GJ 4366", "Passat", "1HGKM663427C15334", 5);carList.add(b3);
         Car b4 = new Car( 65.00, 2013, "Toyota", true, "GG 2359", "Rav4", "8HSMM81429G62728", 5);carList.add(b4);
-        while (true) {
+        boolean cikls = true;
+        while (cikls) {
             System.out.println("Iepsejamas operacijas:");
             System.out.println("1. redzet visu mašīnu sarakstu");
             System.out.println("2. redzet visu pieejamo mašīnu sarakstu");
             System.out.println("3. kļūt par lietotāju");
             System.out.println("4. rezervēt auto");
-            System.out.println("5. atgriezt auto");
-            System.out.println("6. aprēķināt cenu");
-            System.out.println("7. manas rentes");
+            System.out.println("5. aprēķināt cenu");
+            System.out.println("6. visas manas rentes");
+            System.out.println("7. kopējā cena par visām izīrētām mašīnām");
 
+            if (sc.nextLine().equalsIgnoreCase("Q")) {
+                cikls = false;
+                System.out.println("Programmas beigas");
+            }
 
-            Scanner sc = new Scanner(System.in);
             String toDo = sc.nextLine();
             switch (toDo) {
                 case "1":
@@ -82,19 +85,18 @@ public class Main {
                     System.out.println("Lūdzu izvēlaties auto: (raksties plates nr.)");
                     String izvele = sc.nextLine();
 
+                    System.out.println("Lūdzu ievadi uz cik dienām īrēsi auto:");
+                    int dienuSkaits = sc.nextInt();
+
                     for (Car car : carList) {
                         if (izvele.equalsIgnoreCase(car.getPlate())) {
-                            Rental rent = new Rental(car, lietotajs);
+                            Rental rent = new Rental (dienuSkaits, car, lietotajs);
                             lietotajs.getRents().add(rent);
                             car.setAvailable(false);
                         }
                     }
                     break;
                 case "5":
-                    System.out.println("jusu iziretais auto");
-                    System.out.println(lietotajs.getRents());
-                break;
-                case "6":
                     System.out.println("ievadiet dienu skaitu, cik vēlaties auto īrēt");
                     int dienas = sc.nextInt();
 
@@ -109,9 +111,27 @@ public class Main {
                     for (Car car : carList) {
                         if (izvelne.equalsIgnoreCase(car.getPlate())) {
                             double cena = dienas * car.getPrice();
-                            System.out.printf("jūsu auto cena par %s dienām būs : %d\n", dienas, cena);
+                            System.out.printf("jūsu auto cena par %s dienām būs : %.2f\n", dienas, cena);
                         }
                     }
+                break;
+                case "6":
+
+                    for (Rental rents : lietotajs.getRents()) {
+                        System.out.println(rents);
+                    }
+
+                break;
+                case "7":
+
+                    double totalPrice = 0;
+
+                    for (Rental rent : lietotajs.getRents()) {
+                        totalPrice += rent.getCar().getPrice() * rent.getDays();;
+                    }
+
+                    System.out.println("kopējā cena : " + totalPrice);
+
                 break;
             }
         }

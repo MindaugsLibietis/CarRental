@@ -1,10 +1,11 @@
 package com.rcs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
     private String id;
-    private List<Rental> rents;
+    private List<Rental> rents = new ArrayList<>();
     private License license;
 
     public Client(String id, List<Rental> rents, License license) {
@@ -19,8 +20,6 @@ public class Client {
     }
 
     protected Client() {
-        this.id = "null";
-        this.license = null;
     }
 
     public String getId() {

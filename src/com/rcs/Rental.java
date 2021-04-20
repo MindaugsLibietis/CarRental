@@ -9,6 +9,12 @@ public class Rental {
     private Car car;
     private Client client;
 
+    public Rental(int days, Car car, Client client) {
+        this.days = days;
+        this.car = car;
+        this.client = client;
+    }
+
     public Rental(Car car, Client client) {
         this.car = car;
         this.client = client;
@@ -36,5 +42,10 @@ public class Rental {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Auto kuru īrēju:\n %s", car);
     }
 }

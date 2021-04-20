@@ -59,15 +59,15 @@ public class Car extends CarModel{
     @Override
     public String toString() {
         if (this.available) {
-            return String.format("Car Mark: %s\nCar Model: %s\nCar Year: %s\nStatus: Available", this.make, this.carModel, this.year);
+            return String.format("Car Mark: %s\nCar Model: %s\nCar Year: %s\nStatus: Available\n Price: %.2f\n", this.make, this.carModel, this.year, this.price);
         } else {
-            return String.format("Car Mark: %s\nCar Model: %s\nCar Year: %s\nStatus: NotAvailable", this.make, this.carModel, this.year);
+            return String.format("Car Mark: %s\nCar Model: %s\nCar Year: %s\nStatus: NotAvailable\n Price: %.2f\n", this.make, this.carModel, this.year, this.price);
         }
     }
 
     public Object printet() {
         if (this.available) {
-            return String.format("Car Mark: %s\nCar Model: %s\nCar Year: %s\nPlate: %s", this.make, this.carModel, this.year, this.plate);
+            return String.format("Car Mark: %s\nCar Model: %s\nCar Year: %s\nPlate: %s\nPrice: %.2f\n", this.make, this.carModel, this.year, this.plate, this.price);
         } else
             return String.format("auto nav pieejams");
     }
