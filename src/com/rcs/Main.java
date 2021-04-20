@@ -24,23 +24,22 @@ public class Main {
         Car b2 = new Car( 75.00, 2013, "BMW", true, "GC 6453", "530d", "7HBDM43577H25444", 5);carList.add(b2);
         Car b3 = new Car( 69.00, 2015, "Volkswagen", true, "GJ 4366", "Passat", "1HGKM663427C15334", 5);carList.add(b3);
         Car b4 = new Car( 65.00, 2013, "Toyota", true, "GG 2359", "Rav4", "8HSMM81429G62728", 5);carList.add(b4);
-        boolean cikls = true;
-        while (cikls) {
+        while (true) {
             System.out.println("Iepsejamas operacijas:");
             System.out.println("1. redzet visu mašīnu sarakstu");
             System.out.println("2. redzet visu pieejamo mašīnu sarakstu");
-            System.out.println("3. kļūt par lietotāju");
-            System.out.println("4. rezervēt auto");
-            System.out.println("5. aprēķināt cenu");
+            System.out.println("3. aprēķināt cenu");
+            System.out.println("4. kļūt par lietotāju");
+            System.out.println("5. rezervēt auto");
             System.out.println("6. visas manas rentes");
             System.out.println("7. kopējā cena par visām izīrētām mašīnām");
 
-            if (sc.nextLine().equalsIgnoreCase("Q")) {
-                cikls = false;
-                System.out.println("Programmas beigas");
-            }
 
             String toDo = sc.nextLine();
+            if (toDo.equalsIgnoreCase("Q")) {
+                System.out.println("Programmas beigas");
+                break;
+            }
             switch (toDo) {
                 case "1":
                     for (Car car : carList) {
@@ -55,6 +54,25 @@ public class Main {
                     }
                     break;
                 case "3":
+                    System.out.println("ievadiet dienu skaitu, cik vēlaties auto īrēt");
+                    int dienas = sc.nextInt();
+
+                    for (Car car : carList) {
+                        if (car.isAvailable()) {
+                            System.out.println(car.printet());
+                        }
+                    }
+                    sc.nextLine();
+                    System.out.println("ievadiet plates nr.");
+                    String izvelne = sc.nextLine();
+                    for (Car car : carList) {
+                        if (izvelne.equalsIgnoreCase(car.getPlate())) {
+                            double cena = dienas * car.getPrice();
+                            System.out.printf("jūsu auto cena par %s dienām būs : %.2f\n\n", dienas, cena);
+                        }
+                    }
+                    break;
+                case "4":
                     System.out.println("ievadiet Vārdu");
                     String name = sc.nextLine();
                     System.out.println("ievadiet Uzvārdu");
@@ -75,8 +93,8 @@ public class Main {
                     String id = UUID.randomUUID().toString();
                     Client klients = new Client(id, license);
                     lietotajs = klients;
-                    break;
-                case "4":
+                break;
+                case "5":
                     for (Car car : carList) {
                         if (car.isAvailable()) {
                             System.out.println(car.printet());
@@ -95,43 +113,21 @@ public class Main {
                             car.setAvailable(false);
                         }
                     }
-                    break;
-                case "5":
-                    System.out.println("ievadiet dienu skaitu, cik vēlaties auto īrēt");
-                    int dienas = sc.nextInt();
-
-                    for (Car car : carList) {
-                        if (car.isAvailable()) {
-                            System.out.println(car.printet());
-                        }
-                    }
-                    sc.nextLine();
-                    System.out.println("ievadiet plates nr.");
-                    String izvelne = sc.nextLine();
-                    for (Car car : carList) {
-                        if (izvelne.equalsIgnoreCase(car.getPlate())) {
-                            double cena = dienas * car.getPrice();
-                            System.out.printf("jūsu auto cena par %s dienām būs : %.2f\n", dienas, cena);
-                        }
-                    }
                 break;
                 case "6":
-
                     for (Rental rents : lietotajs.getRents()) {
                         System.out.println(rents);
                     }
-
                 break;
                 case "7":
-
                     double totalPrice = 0;
-
                     for (Rental rent : lietotajs.getRents()) {
                         totalPrice += rent.getCar().getPrice() * rent.getDays();;
                     }
-
                     System.out.println("kopējā cena : " + totalPrice);
-
+                break;
+                default:
+                    System.out.println("nepareiza ievade");
                 break;
             }
         }

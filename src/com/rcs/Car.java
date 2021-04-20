@@ -61,7 +61,7 @@ public class Car extends CarModel{
         if (this.available) {
             return String.format("Car Mark: %s\nCar Model: %s\nCar Year: %s\nStatus: Available\n Price: %.2f\n", this.make, this.carModel, this.year, this.price);
         } else {
-            return String.format("Car Mark: %s\nCar Model: %s\nCar Year: %s\nStatus: NotAvailable\n Price: %.2f\n", this.make, this.carModel, this.year, this.price);
+            return String.format("Car Mark: %s\nCar Model: %s\nCar Year: %s\nStatus: NotAvailable\n Price per day: %.2f\n", this.make, this.carModel, this.year, this.price);
         }
     }
 

@@ -46,6 +46,6 @@ public class Rental {
 
     @Override
     public String toString() {
-        return String.format("Auto kuru īrēju:\n %s", car);
+        return String.format("Auto kuru īrēju:\n %s Dienas cik auto tiks īrēts: %s\n", this.car, this.days);
     }
 }
