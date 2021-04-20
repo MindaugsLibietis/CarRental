@@ -1,45 +1,74 @@
 package com.rcs;
 
-public class Car {
-    private String Plate;
-    private double Price;
-    private int Year;
-    private CarModel carModel;
-    private boolean Status;
+public class Car extends CarModel{
 
-    public String getPlate() {
-        return Plate;
+    private double price;
+    private boolean available;
+    private String plate;
+    private String vinNr;
+
+    public Car(double price, int year, String make, boolean available, String plate, String carModel, String vinNr, Integer nrOfSeats) {
+        this.price = price;
+        this.year = year;
+        this.make = make;
+        this.available = available;
+        this.plate = plate;
+        this.carModel = carModel;
+        this.vinNr = vinNr;
+        this.nrOfSeats = nrOfSeats;
     }
 
-    public void setPlate(String plate) {
-        Plate = plate;
+    public Car(String make, String carModel, int year, double price) {
+        this.make = make;
+        this.carModel = carModel;
+        this.year = year;
+        this.price = price;
     }
 
     public double getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(double price) {
-        Price = price;
+        this.price = price;
     }
 
-    public int getYear() {
-        return Year;
+    public boolean isAvailable() {
+        return available;
     }
 
-    public void setYear(int year) {
-        Year = year;
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
-    public CarModel getCarModel() {
-        return carModel;
+    public String getPlate() {
+        return plate;
     }
 
-    public void setCarModel(CarModel carModel) {
-        this.carModel = carModel;
+    public void setPlate(String plate) {
+        this.plate = plate;
+    }
+    public String getVinNr() {
+        return vinNr;
     }
 
-    public void setStatus(boolean status) {
-        Status = status;
+    public void setVinNr(String vinNr) {
+        this.vinNr = vinNr;
+    }
+
+    @Override
+    public String toString() {
+        if (this.available) {
+            return String.format("Car Mark: %s\nCar Model: %s\nCar Year: %s\nStatus: Available", this.make, this.carModel, this.year);
+        } else {
+            return String.format("Car Mark: %s\nCar Model: %s\nCar Year: %s\nStatus: NotAvailable", this.make, this.carModel, this.year);
+        }
+    }
+
+    public Object printet() {
+        if (this.available) {
+            return String.format("Car Mark: %s\nCar Model: %s\nCar Year: %s\nPlate: %s", this.make, this.carModel, this.year, this.plate);
+        } else
+            return String.format("auto nav pieejams");
     }
 }

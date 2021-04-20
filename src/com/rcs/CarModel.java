@@ -1,31 +1,41 @@
 package com.rcs;
 
 public class CarModel {
-    private String Make;
-    private String Name;
-    private String VinNr;
+    protected int year;
+    protected String make;
+    protected String carModel;
+    protected Integer nrOfSeats;
+
+    public Integer getNrOfSeats() {
+        return nrOfSeats;
+    }
+
+    public void setNrOfSeats(Integer nrOfSeats) {
+        this.nrOfSeats = nrOfSeats;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
 
     public String getMake() {
-        return Make;
+        return make;
     }
 
     public void setMake(String make) {
-        Make = make;
+        this.make = make;
     }
 
-    public String getName() {
-        return Name;
+    public String getCarModel() {
+        return carModel;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
     }
 
-    public String getVinNr() {
-        return VinNr;
-    }
-
-    public void setVinNr(String vinNr) {
-        VinNr = vinNr;
-    }
 }

@@ -1,17 +1,26 @@
 package com.rcs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
     private String id;
-    private List<Rental> Client = new ArrayList<>();
+    private List<Rental> rents;
     private License license;
 
-    public Client(String id, List<Rental> Client, License license) {
+    public Client(String id, List<Rental> rents, License license) {
         this.id = id;
-        this.Client = Client;
+        this.rents = rents;
         this.license = license;
+    }
+
+    public Client(String id, License license) {
+        this.id = id;
+        this.license = license;
+    }
+
+    protected Client() {
+        this.id = "null";
+        this.license = null;
     }
 
     public String getId() {
@@ -22,12 +31,12 @@ public class Client {
         this.id = id;
     }
 
-    public List<Rental> getClient() {
-        return Client;
+    public List<Rental> getRents() {
+        return rents;
     }
 
-    public void setClient(List<Rental> client) {
-        Client = client;
+    public void setRents(List<Rental> rents) {
+        this.rents = rents;
     }
 
     public License getLicense() {
