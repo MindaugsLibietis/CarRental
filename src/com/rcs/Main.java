@@ -12,7 +12,6 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         Client lietotajs = new Client();
         List<Car> carList = new ArrayList<Car>();
 
@@ -25,17 +24,18 @@ public class Main {
         Car b3 = new Car( 69.00, 2015, "Volkswagen", true, "GJ 4366", "Passat", "1HGKM663427C15334", 5);carList.add(b3);
         Car b4 = new Car( 65.00, 2013, "Toyota", true, "GG 2359", "Rav4", "8HSMM81429G62728", 5);carList.add(b4);
         while (true) {
-            System.out.println("Iepsejamas operacijas:");
-            System.out.println("1. redzet visu mašīnu sarakstu");
-            System.out.println("2. redzet visu pieejamo mašīnu sarakstu");
+            System.out.println("Iespējamās operācijas:");
+            System.out.println("1. redzēt visu mašīnu sarakstu");
+            System.out.println("2. redzēt visu pieejamo mašīnu sarakstu");
             System.out.println("3. aprēķināt cenu");
             System.out.println("4. kļūt par lietotāju");
             System.out.println("5. rezervēt auto");
             System.out.println("6. visas manas rentes");
             System.out.println("7. kopējā cena par visām izīrētām mašīnām");
 
-
+            Scanner sc = new Scanner(System.in);
             String toDo = sc.nextLine();
+
             if (toDo.equalsIgnoreCase("Q")) {
                 System.out.println("Programmas beigas");
                 break;
@@ -113,6 +113,8 @@ public class Main {
                             car.setAvailable(false);
                         }
                     }
+                    System.out.println("Auto veiksmīgi rezervēts!");
+                    System.out.println("-------------------------");
                 break;
                 case "6":
                     for (Rental rents : lietotajs.getRents()) {
