@@ -1,11 +1,7 @@
 package com.rcs;
 
-
-import com.sun.xml.internal.ws.handler.ClientSOAPHandlerTube;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
 
 public class Main {
@@ -13,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         Client lietotajs = new Client();
-        List<Car> carList = new ArrayList<Car>();
+        List<Car> carList = new ArrayList<>();
 
         Car a1 = new Car(45.00, 2007, "Volvo", true, "GD 1337", "V70", "5HBDM84627C13444", 5);carList.add(a1);
         Car a2 = new Car(45.00, 2005, "Audi", true, "GD 1743", "A6", "6HGAZ84347B45754", 5);carList.add(a2);
@@ -78,9 +74,9 @@ public class Main {
                     System.out.println("ievadiet Uzvārdu");
                     String surname = sc.nextLine();
                     System.out.println("ievadiet dzimšanas datus (dd/mm/yyyy)");
-                    Date date = null;
+                    Date date;
                     try {
-                        date = new SimpleDateFormat("dd/mm/yyyy").parse(sc.nextLine());
+                        date = new SimpleDateFormat("DD/MM/YYYY").parse(sc.nextLine());
                     } catch (ParseException e) {
                         System.out.println("Nepareizā formātā ievadīts datums, lūdzu mēģiniet velreiz");
                         break;
@@ -124,7 +120,7 @@ public class Main {
                 case "7":
                     double totalPrice = 0;
                     for (Rental rent : lietotajs.getRents()) {
-                        totalPrice += rent.getCar().getPrice() * rent.getDays();;
+                        totalPrice += rent.getCar().getPrice() * rent.getDays();
                     }
                     System.out.println("kopējā cena : " + totalPrice);
                 break;
